@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.Objects;
+
 public class Menu {
     private String name;
     private String type;
@@ -11,10 +13,23 @@ public class Menu {
         this.price = price;
     }
 
+    public boolean equals(String name){
+        return name.equals(this.name);
+    }
+
     @Override
     public boolean equals(Object o){
-        String name = (String) o;
+        Menu menu = (Menu) o;
 
-        return name.equals(this.name);
+        boolean equalName = this.name.equals(menu.name);
+        boolean equalType = this.type.equals(menu.type);
+        boolean equalPrice = this.price == menu.price;
+
+        return equalName && equalType && equalPrice;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(name, type, price);
     }
 }
