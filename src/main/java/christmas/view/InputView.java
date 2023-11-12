@@ -1,7 +1,10 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.domain.Order;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
     private final InputValidator inputValidator = new InputValidator();
