@@ -10,4 +10,11 @@ public class Menu {
         this.type = type;
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object o){
+        String name = (String) o;
+
+        return name.equals(this.name);
+    }
 }
