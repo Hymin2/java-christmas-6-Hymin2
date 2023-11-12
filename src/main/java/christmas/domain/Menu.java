@@ -7,6 +7,7 @@ public class Menu {
 
     public Menu(String name, String type, int price){
         this.name = name;
+        this.type = type;
         this.price = price;
     }
 }
