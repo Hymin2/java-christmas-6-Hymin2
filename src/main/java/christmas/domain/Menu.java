@@ -17,6 +17,14 @@ public class Menu {
         return name.equals(this.name);
     }
 
+    public String getType(){
+        return type;
+    }
+
+    public int getPrice(){
+        return price;
+    }
+
     @Override
     public boolean equals(Object o){
         Menu menu = (Menu) o;
@@ -31,5 +39,10 @@ public class Menu {
     @Override
     public int hashCode(){
         return Objects.hash(name, type, price);
+    }
+
+    @Override
+    public String toString(){
+        return this.name;
     }
 }
