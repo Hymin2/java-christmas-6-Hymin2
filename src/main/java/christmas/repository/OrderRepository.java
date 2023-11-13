@@ -18,6 +18,10 @@ public class OrderRepository {
         return order;
     }
 
+    public void addBenefitPrice(int benefitPrice){
+        order.addBenefitPrice(benefitPrice);
+    }
+
     public void isAllDrink(){
         order.isAllDrink();
     }
