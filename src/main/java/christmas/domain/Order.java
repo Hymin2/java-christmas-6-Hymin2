@@ -7,12 +7,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Order {
+    private Integer date;
     private Map<Menu, Integer> menu = new HashMap<>();
 
-    public void save(Menu menu, Integer menuNumber){
+    public void saveMenu(Menu menu, Integer menuNumber){
         validate(menuNumber);
         validate(menu);
         this.menu.put(menu, menuNumber);
+    }
+
+    public void saveDate(int date){
+        this.date = date;
     }
 
     public void isAllDrink(){
@@ -71,11 +76,12 @@ public class Order {
     }
 
     private void validate(Integer menuNumber){
-        int menuSum = menuNumber;
-
-        for(Integer number : menu.values()){
-            menuSum += number;
+        if(menuNumber <= 0){
+            throw new IllegalArgumentException(ErrorMessage.LESS_MIN_ORDER_NUMBER_ERROR_MESSAGE.getMessage());
         }
+
+        int menuSum = menu.values().stream()
+                .reduce(menuNumber, (a, b) -> a + b);
 
         if(menuSum > 20){
             throw new IllegalArgumentException(ErrorMessage.EXCEED_MAX_ORDER_NUMBER_ERROR_MESSAGE.getMessage());

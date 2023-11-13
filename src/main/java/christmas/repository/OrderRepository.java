@@ -6,8 +6,16 @@ import christmas.domain.Order;
 public class OrderRepository {
     private static Order order = new Order();
 
-    public void save(Menu menu, Integer menuNumber){
-        order.save(menu, menuNumber);
+    public void saveMenu(Menu menu, Integer menuNumber){
+        order.saveMenu(menu, menuNumber);
+    }
+
+    public void saveDate(int date){
+        order.saveDate(date);
+    }
+
+    public Order getOrder(){
+        return order;
     }
 
     public void isAllDrink(){
