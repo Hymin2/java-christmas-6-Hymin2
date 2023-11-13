@@ -18,11 +18,15 @@ public class OrderRepository {
         return order.getAllPrice();
     }
 
-    public long getDessertCount(){
+    public int getDessertCount(){
         return order.getDessertCount();
     }
 
-    public long getMainMenuCount(){
+    public int getMainMenuCount(){
         return order.getMainMenuCount();
+    }
+
+    public void clear(){
+        order.clear();
     }
 }
