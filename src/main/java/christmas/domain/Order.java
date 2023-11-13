@@ -79,6 +79,10 @@ public class Order {
         return date;
     }
 
+    public Integer getBenefitPrice(){
+        return benefitPrice;
+    }
+
     public void clear(){
         menu.clear();
     }
