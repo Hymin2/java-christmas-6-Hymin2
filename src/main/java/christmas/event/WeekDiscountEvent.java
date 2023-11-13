@@ -7,6 +7,10 @@ import christmas.util.DateCalculator;
 public class WeekDiscountEvent implements DiscountEvent{
     @Override
     public int getDiscountPrice(Order order) {
+        if(isApply(order)){
+            return 2023 * order.getDessertCount();
+        }
+
         return 0;
     }
 
