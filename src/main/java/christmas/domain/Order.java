@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.error.ErrorMessage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,34 +22,51 @@ public class Order {
                 .collect(Collectors.toSet());
 
         if(typeSet.contains("음료") && typeSet.size() == 1){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ORDER_MENU_IS_ONLY_DRINK_ERROR_MESSAGE.getMessage());
         }
     }
 
     public int getAllPrice(){
-        return menu.keySet()
-                .stream()
-                .mapToInt(Menu::getPrice)
-                .sum();
+        int sum = 0;
+
+        for(Menu m : menu.keySet()){
+            sum += m.getPrice() * menu.get(m);
+        }
+
+        return sum;
     }
 
-    public long getDessertCount(){
-        return menu.keySet()
-                .stream()
-                .filter((menu) -> menu.getType().equals("디저트"))
-                .count();
+    public int getDessertCount(){
+        int sum = 0;
+
+        for(Menu m : menu.keySet()){
+            if(m.getType().equals("디저트")) {
+                sum += menu.get(m);
+            }
+        }
+
+        return sum;
     }
 
-    public long getMainMenuCount(){
-        return menu.keySet()
-                .stream()
-                .filter((menu) -> menu.getType().equals("메인"))
-                .count();
+    public int getMainMenuCount(){
+        int sum = 0;
+
+        for(Menu m : menu.keySet()){
+            if(m.getType().equals("메인")) {
+                sum += menu.get(m);
+            }
+        }
+
+        return sum;
+    }
+
+    public void clear(){
+        menu.clear();
     }
 
     private void validate(Menu menu){
         if(this.menu.containsKey(menu)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION_ORDER_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -60,7 +78,7 @@ public class Order {
         }
 
         if(menuSum > 20){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.EXCEED_MAX_ORDER_NUMBER_ERROR_MESSAGE.getMessage());
         }
     }
 }

@@ -1,24 +1,26 @@
 package christmas.view;
 
+import christmas.error.ErrorMessage;
+
 public class InputValidator {
     private final String numberRegex = "^[0-9]*$";
     private final String menuOrderRegex = "^[ㄱ-ㅎ|가-힣]+-[0-9]{1,2}";
 
     public void validateNumber(String input){
         if(isNotNumber(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_DATE_TYPE_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateDate(int input){
         if(isNotDateRange(input)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_DATE_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateMenuOrder(String input){
         if(isNotCorrectMenuOrder(input)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_ORDER_TYPE_ERROR_MESSAGE.getMessage());
         }
     }
 
