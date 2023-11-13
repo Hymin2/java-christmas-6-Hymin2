@@ -1,6 +1,8 @@
 package christmas.event;
 
+import christmas.domain.Order;
+
 public interface GiftEvent extends Event{
-    String getGift();
-    int getGiftPrice();
+    String getGift(Order order);
+    int getGiftPrice(Order order);
 }

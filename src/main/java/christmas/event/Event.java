@@ -1,5 +1,7 @@
 package christmas.event;
 
+import christmas.domain.Order;
+
 public interface Event {
-    boolean isApply();
+    boolean isApply(Order order);
 }
