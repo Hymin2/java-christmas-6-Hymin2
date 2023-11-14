@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.config.EventConfig;
 import christmas.domain.Menu;
 import christmas.dto.OrderBenefitDto;
 import christmas.dto.OrderMenuDto;
@@ -8,7 +9,7 @@ import java.util.Map;
 
 public class OutputView {
     public void printEventMessage(int date){
-        System.out.println(String.format("%d월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", 12, date));
+        System.out.println(String.format("%d월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", EventConfig.EVENT_MONTH.getValue(), date));
     }
 
     public void printOrderMenu(OrderMenuDto orderMenuDto){
@@ -17,7 +18,7 @@ public class OutputView {
 
         Map<Menu, Integer> menu = orderMenuDto.menu();
         for(Menu m : menu.keySet()){
-            System.out.println(m + " " + menu.get(m) + "개");
+            System.out.println(String.format("%s %d개", m, menu.get(m)));
         }
     }
 
@@ -39,7 +40,7 @@ public class OutputView {
 
         Map<String, Integer> benefits = orderBenefitDto.benefits();
 
-        if(benefits.isEmpty()){
+        if(benefits.keySet().isEmpty()){
             System.out.println("없음");
         }
 
@@ -62,7 +63,7 @@ public class OutputView {
 
     public void printEventBadge(String badge){
         System.out.println();
-        System.out.println("<12월 이벤트 배지>");
+        System.out.println(String.format("<%d월 이벤트 배지>", EventConfig.EVENT_MONTH.getValue()));
         System.out.println(badge);
     }
 

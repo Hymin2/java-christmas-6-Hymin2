@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.config.EventConfig;
 import christmas.error.ErrorMessage;
 
 public class InputValidator {
@@ -29,7 +30,7 @@ public class InputValidator {
     }
 
     private boolean isNotDateRange(int input){
-        return input < 1 || input > 31;
+        return input < EventConfig.DAY_RANGE_MIN_VALUE.ordinal() || input > EventConfig.DAY_RANGE_MAX_VALUE.getValue();
     }
 
     private boolean isNotNumber(String input){
