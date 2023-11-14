@@ -17,23 +17,46 @@ public class RestaurantEventController {
         this.outputView = outputView;
     }
 
+    public void run(){
+        saveVisitDay();
+        saveOrderMenu();
+        printEventBenefits();
+    }
+
     public void saveVisitDay(){
-        int date = inputView.readDate();
-        restaurantEventService.saveVisitDay(date);
+        while(true) {
+            try {
+                int date = inputView.readDate();
+                restaurantEventService.saveVisitDay(date);
+
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void saveOrderMenu(){
-        String orderMenu = inputView.readOrderMenu();
-        restaurantEventService.saveOrderMenu(orderMenu);
+        while(true) {
+            try {
+                String orderMenu = inputView.readOrderMenu();
+                restaurantEventService.saveOrderMenu(orderMenu);
+
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void printEventBenefits(){
-        outputView.printOrderMenu();
-        outputView.printTotalPrice();
-        outputView.printServiceMenu();
-        outputView.printBenefit();
-        outputView.printTotalBenefit();
-        outputView.printExpectPrice();
-        outputView.printEventBadge();
+        outputView.printEventMessage(restaurantEventService.getDate());
+        outputView.printOrderMenu(restaurantEventService.getMenu());
+        outputView.printTotalPrice(restaurantEventService.getAllPrice());
+        outputView.printServiceMenu(restaurantEventService.getGift());
+        outputView.printBenefit(restaurantEventService.getBenefits());
+        outputView.printTotalBenefit(restaurantEventService.getBenefitPrice());
+        outputView.printExpectPrice(restaurantEventService.getExpectPrice());
+        outputView.printEventBadge(restaurantEventService.getBadge());
     }
 }
