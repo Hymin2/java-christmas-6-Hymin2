@@ -8,12 +8,8 @@ import java.util.stream.Collectors;
 
 public class Order {
     private Integer date;
-    private Integer benefitPrice;
+    private Map<String, Integer> benefits = new HashMap<>();
     private Map<Menu, Integer> menu = new HashMap<>();
-
-    public Order(){
-        this.benefitPrice = 0;
-    }
 
     public void saveMenu(Menu menu, Integer menuNumber){
         validate(menuNumber);
@@ -26,8 +22,8 @@ public class Order {
         this.date = date;
     }
 
-    public void addBenefitPrice(int benefitPrice){
-        this.benefitPrice += benefitPrice;
+    public void saveBenefit(String eventName, int benefitPrice){
+        this.benefits.put(eventName, benefitPrice);
     }
 
     public void isAllDrink(){
@@ -79,8 +75,18 @@ public class Order {
         return date;
     }
 
+    public Map<String, Integer> getBenefits(){
+        return benefits;
+    }
+
+    public Map<Menu, Integer> getMenu() {
+        return menu;
+    }
+
     public Integer getBenefitPrice(){
-        return benefitPrice;
+        return benefits.values()
+                .stream()
+                .reduce(0, (a, b) -> a + b);
     }
 
     public void clear(){
