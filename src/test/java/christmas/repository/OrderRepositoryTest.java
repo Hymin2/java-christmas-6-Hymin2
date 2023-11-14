@@ -2,6 +2,7 @@ package christmas.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.config.MenuType;
 import christmas.domain.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,9 +15,9 @@ class OrderRepositoryTest {
     @BeforeEach
     void setUp(){
         orderRepository = new OrderRepository();
-        Menu menu1 = new Menu("메뉴1", "메인", 30000);
-        Menu menu2 = new Menu("메뉴2", "디저트", 3000);
-        Menu menu3 = new Menu("메뉴3", "메인", 20000);
+        Menu menu1 = new Menu("메뉴1", MenuType.MAIN, 30000);
+        Menu menu2 = new Menu("메뉴2", MenuType.DESSERT, 3000);
+        Menu menu3 = new Menu("메뉴3", MenuType.MAIN, 20000);
 
         orderRepository.saveMenu(menu1, 2);
         orderRepository.saveMenu(menu2, 2);
@@ -31,7 +32,7 @@ class OrderRepositoryTest {
     @Test
     @DisplayName("중복 메뉴를 주문할 경우 예외 테스트")
     void orderDuplicationMenuTest(){
-        Menu menu = new Menu("메뉴1", "메인", 30000);
+        Menu menu = new Menu("메뉴1", MenuType.MAIN, 30000);
 
         assertThrows(IllegalArgumentException.class, () -> {
             orderRepository.saveMenu(menu, 2);
@@ -41,7 +42,7 @@ class OrderRepositoryTest {
     @Test
     @DisplayName("메뉴 개수가 20개 초과인 경우 예외 테스트")
     void orderMenuNumberBiggerThanMaxTest(){
-        Menu menu = new Menu("메뉴메뉴", "메인", 30000);
+        Menu menu = new Menu("메뉴메뉴", MenuType.MAIN, 30000);
 
         assertThrows(IllegalArgumentException.class, () -> {
             orderRepository.saveMenu(menu, 19);
@@ -53,9 +54,9 @@ class OrderRepositoryTest {
     void orderMenuIsOnlyDrinkTest(){
         orderRepository.clear();
 
-        Menu menu1 = new Menu("메뉴1", "음료", 3000);
-        Menu menu2 = new Menu("메뉴2", "음료", 3000);
-        Menu menu3 = new Menu("메뉴3", "음료", 2000);
+        Menu menu1 = new Menu("메뉴1", MenuType.DRINK, 3000);
+        Menu menu2 = new Menu("메뉴2", MenuType.DRINK, 3000);
+        Menu menu3 = new Menu("메뉴3", MenuType.DRINK, 2000);
 
         orderRepository.saveMenu(menu1, 2);
         orderRepository.saveMenu(menu2, 2);

@@ -2,6 +2,7 @@ package christmas.event;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.config.MenuType;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,7 +21,7 @@ class ChampagneGiftEventTest {
     @DisplayName("총주문 금액이 120000원 미만일 때 미적용 테스트")
     void notApplyChampagneGiftEventByLessThanMinPriceTest(){
         Order order = new Order();
-        order.saveMenu(new Menu("메뉴", "메인", 10000), 1);
+        order.saveMenu(new Menu("메뉴", MenuType.MAIN, 10000), 1);
 
         boolean isApply = champagneGiftEvent.isApply(order);
 
@@ -31,7 +32,7 @@ class ChampagneGiftEventTest {
     @DisplayName("총주문 금액이 120000원 이상일 때 적용 테스트")
     void applyChampagneGiftEventTest(){
         Order order = new Order();
-        order.saveMenu(new Menu("메뉴", "메인", 120000), 1);
+        order.saveMenu(new Menu("메뉴", MenuType.MAIN, 120000), 1);
 
         boolean isApply = champagneGiftEvent.isApply(order);
 
@@ -42,7 +43,7 @@ class ChampagneGiftEventTest {
     @DisplayName("샴페인 가격 테스트")
     void champagnePriceTest(){
         Order order = new Order();
-        order.saveMenu(new Menu("메뉴", "디저트", 120000), 2);
+        order.saveMenu(new Menu("메뉴", MenuType.DESSERT, 120000), 2);
 
         int discount = champagneGiftEvent.getGiftPrice(order);
 

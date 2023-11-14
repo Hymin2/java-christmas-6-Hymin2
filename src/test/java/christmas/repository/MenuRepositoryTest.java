@@ -2,6 +2,7 @@ package christmas.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.config.MenuType;
 import christmas.domain.Menu;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +15,7 @@ class MenuRepositoryTest {
     static void setUp(){
         menuRepository = new MenuRepository();
 
-        menuRepository.save(new Menu("메뉴", "메인 메뉴", 40000));
+        menuRepository.save(new Menu("메뉴", MenuType.MAIN, 40000));
     }
 
     @Test
