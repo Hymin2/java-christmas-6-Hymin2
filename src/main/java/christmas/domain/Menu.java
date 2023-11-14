@@ -1,13 +1,14 @@
 package christmas.domain;
 
+import christmas.config.MenuType;
 import java.util.Objects;
 
 public class Menu {
     private String name;
-    private String type;
+    private MenuType type;
     private int price;
 
-    public Menu(String name, String type, int price){
+    public Menu(String name, MenuType type, int price){
         this.name = name;
         this.type = type;
         this.price = price;
@@ -17,7 +18,7 @@ public class Menu {
         return name.equals(this.name);
     }
 
-    public String getType(){
+    public MenuType getType(){
         return type;
     }
 
