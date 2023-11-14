@@ -1,6 +1,5 @@
 package christmas.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import christmas.service.RestaurantEventService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -19,19 +18,19 @@ public class RestaurantEventController {
     }
 
     public void run(){
-        saveVisitDay();
+        saveVisitDate();
         saveOrderMenu();
-        printEventBenefits();
+        printOrderDetails();
 
         restaurantEventService.clearMenu();
         restaurantEventService.clearOrder();
     }
 
-    public void saveVisitDay(){
+    public void saveVisitDate(){
         while(true) {
             try {
                 int date = inputView.readDate();
-                restaurantEventService.saveVisitDay(date);
+                restaurantEventService.saveVisitDate(date);
 
                 break;
             } catch (IllegalArgumentException e){
@@ -53,15 +52,18 @@ public class RestaurantEventController {
         }
     }
 
-    public void printEventBenefits(){
+    public void printOrderDetails(){
         outputView.printEventMessage(restaurantEventService.getDate());
-        outputView.printOrderMenu(restaurantEventService.getMenu());
-        outputView.printTotalPrice(restaurantEventService.getAllPrice());
-        outputView.printServiceMenu(restaurantEventService.getGift());
-        outputView.printBenefit(restaurantEventService.getBenefits());
-        outputView.printTotalBenefit(restaurantEventService.getBenefitPrice());
-        outputView.printExpectPrice(restaurantEventService.getExpectPrice());
-        outputView.printEventBadge(restaurantEventService.getBadge());
 
+        outputView.printOrderMenu(restaurantEventService.getMenu());
+        outputView.printTotalAmount(restaurantEventService.getAllAmount());
+
+        outputView.printGiftMenu(restaurantEventService.getGift());
+        outputView.printBenefit(restaurantEventService.getBenefits());
+        outputView.printTotalBenefit(restaurantEventService.getBenefitAmount());
+
+        outputView.printExpectAmount(restaurantEventService.getExpectPrice());
+
+        outputView.printEventBadge(restaurantEventService.getBadge());
     }
 }
