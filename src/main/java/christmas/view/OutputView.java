@@ -40,8 +40,10 @@ public class OutputView {
 
         Map<String, Integer> benefits = orderBenefitDto.benefits();
 
-        if(benefits.keySet().isEmpty()){
+        if(isNotExistBenefit(benefits)){
             System.out.println("없음");
+
+            return;
         }
 
         for(String benefit : benefits.keySet()){
@@ -65,6 +67,10 @@ public class OutputView {
         System.out.println();
         System.out.println(String.format("<%d월 이벤트 배지>", EventConfig.EVENT_MONTH.getValue()));
         System.out.println(badge);
+    }
+
+    private boolean isNotExistBenefit(Map<String, Integer> benefits){
+        return benefits.keySet().isEmpty();
     }
 
     private String toWon(int price){
