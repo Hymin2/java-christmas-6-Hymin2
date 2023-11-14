@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.service.RestaurantEventService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -21,6 +22,9 @@ public class RestaurantEventController {
         saveVisitDay();
         saveOrderMenu();
         printEventBenefits();
+
+        restaurantEventService.clearMenu();
+        restaurantEventService.clearOrder();
     }
 
     public void saveVisitDay(){
@@ -58,5 +62,6 @@ public class RestaurantEventController {
         outputView.printTotalBenefit(restaurantEventService.getBenefitPrice());
         outputView.printExpectPrice(restaurantEventService.getExpectPrice());
         outputView.printEventBadge(restaurantEventService.getBadge());
+
     }
 }
