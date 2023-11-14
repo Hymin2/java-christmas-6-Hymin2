@@ -8,7 +8,7 @@ public class WeekendDiscountEvent implements DiscountEvent{
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return 2023 * order.getMainMenuCount();
+            return -2023 * order.getMainMenuCount();
         }
 
         return 0;

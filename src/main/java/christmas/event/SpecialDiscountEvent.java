@@ -8,7 +8,7 @@ public class SpecialDiscountEvent implements DiscountEvent{
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return 1000;
+            return -1000;
         }
 
         return 0;

@@ -7,7 +7,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return 1000 + 100 * (order.getDate() - 1);
+            return -(1000 + 100 * (order.getDate() - 1));
         }
 
         return 0;

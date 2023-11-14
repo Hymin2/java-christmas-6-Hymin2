@@ -15,7 +15,7 @@ public class ChampagneGiftEvent implements GiftEvent{
     @Override
     public String getGift(Order order) {
         if(isApply(order)){
-            return "샴페인";
+            return "샴페인 1개";
         }
 
         return null;
