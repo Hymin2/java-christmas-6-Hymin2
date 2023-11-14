@@ -45,7 +45,7 @@ class ChampagneGiftEventTest {
         Order order = new Order();
         order.saveMenu(new Menu("메뉴", MenuType.DESSERT, 120000), 2);
 
-        int discount = champagneGiftEvent.getGiftPrice(order);
+        int discount = champagneGiftEvent.getGiftAmount(order);
 
         assertEquals(25000, discount);
     }

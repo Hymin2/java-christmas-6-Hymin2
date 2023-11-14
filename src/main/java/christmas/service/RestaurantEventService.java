@@ -17,7 +17,6 @@ import christmas.event.WeekendDiscountEvent;
 import christmas.repository.MenuRepository;
 import christmas.repository.OrderRepository;
 import java.util.List;
-import org.mockito.internal.matchers.Or;
 
 public class RestaurantEventService {
     private final MenuRepository menuRepository;
@@ -34,7 +33,7 @@ public class RestaurantEventService {
         menuRepository.save(menu);
     }
 
-    public void saveVisitDay(int date) {
+    public void saveVisitDate(int date) {
         orderRepository.saveDate(date);
     }
 
@@ -66,7 +65,7 @@ public class RestaurantEventService {
 
         for(DiscountEvent discountEvent : discountEvents){
             if (discountEvent.isApply(order)){
-                orderRepository.saveBenefit(discountEvent.toString(), discountEvent.getDiscountPrice(order));
+                orderRepository.saveBenefit(discountEvent.toString(), discountEvent.getDiscountAmount(order));
             }
         }
     }
@@ -77,11 +76,11 @@ public class RestaurantEventService {
         Order order = orderRepository.getOrder();
 
         if (giftEvent.isApply(order)){
-            orderRepository.saveBenefit(giftEvent.toString(), giftEvent.getGiftPrice(order));
+            orderRepository.saveBenefit(giftEvent.toString(), giftEvent.getGiftAmount(order));
         }
     }
 
-    public int getDiscountPrice(){
+    public int getDiscountAmount(){
         List<DiscountEvent> discountEvents = List.of(
                 new ChristmasDayDiscountEvent(),
                 new WeekDiscountEvent(),
@@ -90,15 +89,15 @@ public class RestaurantEventService {
 
         Order order = orderRepository.getOrder();
 
-        int sumDiscountPrice = 0;
+        int totalDiscountAmount = 0;
 
         for(DiscountEvent discountEvent : discountEvents){
             if (discountEvent.isApply(order)){
-                sumDiscountPrice += discountEvent.getDiscountPrice(order);
+                totalDiscountAmount += discountEvent.getDiscountAmount(order);
             }
         }
 
-        return sumDiscountPrice;
+        return totalDiscountAmount;
     }
 
     public String getGift(){
@@ -139,22 +138,20 @@ public class RestaurantEventService {
         return order.getDate();
     }
 
-    public int getAllPrice(){
+    public int getAllAmount(){
         Order order = orderRepository.getOrder();
 
-        return order.getAllPrice();
+        return order.getAllAmount();
     }
 
-    public int getBenefitPrice(){
+    public int getBenefitAmount(){
         Order order = orderRepository.getOrder();
 
-        return order.getBenefitPrice();
+        return order.getBenefitAmount();
     }
 
     public int getExpectPrice() {
-        Order order = orderRepository.getOrder();
-
-        return order.getAllPrice() + getDiscountPrice();
+        return getAllAmount() + getDiscountAmount();
     }
 
     public void clearMenu(){

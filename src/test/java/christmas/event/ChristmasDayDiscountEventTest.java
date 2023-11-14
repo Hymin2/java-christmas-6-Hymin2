@@ -59,7 +59,7 @@ class ChristmasDayDiscountEventTest {
         order.saveMenu(new Menu("메뉴", MenuType.DESSERT, 10000), 2);
         order.saveDate(22);
 
-        int discount = christmasDayDiscountEvent.getDiscountPrice(order);
+        int discount = christmasDayDiscountEvent.getDiscountAmount(order);
 
         assertEquals(3100, discount);
     }

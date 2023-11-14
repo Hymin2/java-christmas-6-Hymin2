@@ -11,7 +11,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
 
 
     @Override
-    public int getDiscountPrice(Order order) {
+    public int getDiscountAmount(Order order) {
         if(isApply(order)){
             return -1 * (baseDiscountPrice + extraDiscountPrice * (order.getDate() - 1));
         }
@@ -21,7 +21,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if (order.getAllPrice() < minPriceCondition){
+        if (order.getAllAmount() < minPriceCondition){
             return false;
         }
 

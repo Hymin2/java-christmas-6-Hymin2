@@ -22,16 +22,16 @@ public class OutputView {
         }
     }
 
-    public void printServiceMenu(String gift){
+    public void printGiftMenu(String gift){
         System.out.println();
         System.out.println("<증정 메뉴>");
         System.out.println(gift);
     }
 
-    public void printTotalPrice(int allPrice){
+    public void printTotalAmount(int totalAmount){
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(toWon(allPrice));
+        System.out.println(toWon(totalAmount));
     }
 
     public void printBenefit(OrderBenefitDto orderBenefitDto){
@@ -57,10 +57,10 @@ public class OutputView {
         System.out.println(toWon(benefitPrice));
     }
 
-    public void printExpectPrice(int expectPrice){
+    public void printExpectAmount(int expectAmount){
         System.out.println();
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(toWon(expectPrice));
+        System.out.println(toWon(expectAmount));
     }
 
     public void printEventBadge(String badge){

@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Menu {
     private String name;
     private MenuType type;
-    private int price;
+    private int amount;
 
-    public Menu(String name, MenuType type, int price){
+    public Menu(String name, MenuType type, int amount){
         this.name = name;
         this.type = type;
-        this.price = price;
+        this.amount = amount;
     }
 
     public boolean equals(String name){
@@ -22,8 +22,8 @@ public class Menu {
         return type;
     }
 
-    public int getPrice(){
-        return price;
+    public int getAmount(){
+        return amount;
     }
 
     @Override
@@ -32,14 +32,14 @@ public class Menu {
 
         boolean equalName = this.name.equals(menu.name);
         boolean equalType = this.type.equals(menu.type);
-        boolean equalPrice = this.price == menu.price;
+        boolean equalPrice = this.amount == menu.amount;
 
         return equalName && equalType && equalPrice;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(name, type, price);
+        return Objects.hash(name, type, amount);
     }
 
     @Override

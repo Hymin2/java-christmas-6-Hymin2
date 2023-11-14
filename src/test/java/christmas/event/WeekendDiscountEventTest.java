@@ -59,7 +59,7 @@ class WeekendDiscountEventTest {
         order.saveMenu(new Menu("메뉴", MenuType.MAIN, 10000), 2);
         order.saveDate(8);
 
-        int discount = weekendDiscountEvent.getDiscountPrice(order);
+        int discount = weekendDiscountEvent.getDiscountAmount(order);
 
         assertEquals(4046, discount);
     }

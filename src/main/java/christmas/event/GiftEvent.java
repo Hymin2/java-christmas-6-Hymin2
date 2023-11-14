@@ -4,5 +4,5 @@ import christmas.domain.Order;
 
 public interface GiftEvent extends Event{
     String getGift(Order order);
-    int getGiftPrice(Order order);
+    int getGiftAmount(Order order);
 }

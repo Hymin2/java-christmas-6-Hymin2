@@ -15,7 +15,7 @@ public class ChristmasBadgeEvent implements BadgeEvent{
     @Override
     public String getBadge(Order order) {
         if(isApply(order)){
-            int benefitPrice = Math.abs(order.getBenefitPrice());
+            int benefitPrice = Math.abs(order.getBenefitAmount());
 
             if(benefitPrice >= santaPriceCondition){
                 return santaBadge;
@@ -31,7 +31,7 @@ public class ChristmasBadgeEvent implements BadgeEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if(Math.abs(order.getBenefitPrice()) >= minPriceCondition){
+        if(Math.abs(order.getBenefitAmount()) >= minPriceCondition){
             return true;
         }
 

@@ -11,7 +11,7 @@ public class WeekDiscountEvent implements DiscountEvent{
     private final String eventName = "평일 할인";
 
     @Override
-    public int getDiscountPrice(Order order) {
+    public int getDiscountAmount(Order order) {
         if(isApply(order)){
             return -1 * baseDiscountPrice * order.getDessertCount();
         }
@@ -21,7 +21,7 @@ public class WeekDiscountEvent implements DiscountEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if(order.getAllPrice() < minPriceCondition){
+        if(order.getAllAmount() < minPriceCondition){
             return false;
         }
 

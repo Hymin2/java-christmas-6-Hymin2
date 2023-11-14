@@ -71,7 +71,7 @@ class SpecialDiscountEventTest {
         order.saveMenu(new Menu("메뉴", MenuType.DESSERT, 10000), 2);
         order.saveDate(10);
 
-        int discount = SpecialDiscountEvent.getDiscountPrice(order);
+        int discount = SpecialDiscountEvent.getDiscountAmount(order);
 
         assertEquals(1000, discount);
     }

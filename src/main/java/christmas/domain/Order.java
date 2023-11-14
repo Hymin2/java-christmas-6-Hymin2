@@ -24,8 +24,8 @@ public class Order {
         this.date = date;
     }
 
-    public void saveBenefit(String eventName, int benefitPrice){
-        this.benefits.put(eventName, benefitPrice);
+    public void saveBenefit(String eventName, int benefitAmount){
+        this.benefits.put(eventName, benefitAmount);
     }
 
     public void isAllDrink(){
@@ -39,11 +39,11 @@ public class Order {
         }
     }
 
-    public int getAllPrice(){
+    public int getAllAmount(){
         int sum = 0;
 
         for(Menu m : menu.keySet()){
-            sum += m.getPrice() * menu.get(m);
+            sum += m.getAmount() * menu.get(m);
         }
 
         return sum;
@@ -85,7 +85,7 @@ public class Order {
         return menu;
     }
 
-    public Integer getBenefitPrice(){
+    public Integer getBenefitAmount(){
         return benefits.values()
                 .stream()
                 .reduce(0, (a, b) -> a + b);
