@@ -24,7 +24,7 @@ public class ChampagneGiftEvent implements GiftEvent{
     @Override
     public int getGiftPrice(Order order) {
         if(isApply(order)) {
-            return 25000;
+            return -25000;
         }
 
         return 0;
