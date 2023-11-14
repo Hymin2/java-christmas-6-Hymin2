@@ -29,4 +29,9 @@ public class ChampagneGiftEvent implements GiftEvent{
 
         return 0;
     }
+
+    @Override
+    public String toString(){
+        return "증정 이벤트";
+    }
 }

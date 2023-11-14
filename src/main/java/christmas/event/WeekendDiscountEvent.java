@@ -34,4 +34,9 @@ public class WeekendDiscountEvent implements DiscountEvent{
                 dayOfWeek.equals(DayOfWeek.WEDNESDAY) ||
                 dayOfWeek.equals(DayOfWeek.THURSDAY);
     }
+
+    @Override
+    public String toString(){
+        return "주말 할인";
+    }
 }

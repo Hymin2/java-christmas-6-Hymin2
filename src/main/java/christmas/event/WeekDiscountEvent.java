@@ -31,4 +31,9 @@ public class WeekDiscountEvent implements DiscountEvent{
         return  dayOfWeek.equals(DayOfWeek.FRIDAY) ||
                 dayOfWeek.equals(DayOfWeek.SATURDAY);
     }
+
+    @Override
+    public String toString(){
+        return "평일 할인";
+    }
 }

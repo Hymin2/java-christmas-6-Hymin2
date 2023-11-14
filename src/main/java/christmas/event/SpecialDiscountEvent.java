@@ -26,4 +26,9 @@ public class SpecialDiscountEvent implements DiscountEvent{
 
         return true;
     }
+
+    @Override
+    public String toString(){
+        return "특별 할인";
+    }
 }
