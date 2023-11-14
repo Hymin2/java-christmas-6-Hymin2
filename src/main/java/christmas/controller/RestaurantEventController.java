@@ -62,7 +62,7 @@ public class RestaurantEventController {
         outputView.printBenefit(restaurantEventService.getBenefits());
         outputView.printTotalBenefit(restaurantEventService.getBenefitAmount());
 
-        outputView.printExpectAmount(restaurantEventService.getExpectPrice());
+        outputView.printExpectAmount(restaurantEventService.getExpectAmount());
 
         outputView.printEventBadge(restaurantEventService.getBadge());
     }

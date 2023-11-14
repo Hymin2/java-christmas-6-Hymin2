@@ -150,7 +150,7 @@ public class RestaurantEventService {
         return order.getBenefitAmount();
     }
 
-    public int getExpectPrice() {
+    public int getExpectAmount() {
         return getAllAmount() + getDiscountAmount();
     }
 
