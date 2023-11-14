@@ -5,10 +5,15 @@ import christmas.domain.Order;
 import christmas.util.DateCalculator;
 
 public class WeekDiscountEvent implements DiscountEvent{
+    private final int minPriceCondition = 10000;
+    private final int baseDiscountPrice = 2023;
+
+    private final String eventName = "평일 할인";
+
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return -2023 * order.getDessertCount();
+            return -1 * baseDiscountPrice * order.getDessertCount();
         }
 
         return 0;
@@ -16,7 +21,7 @@ public class WeekDiscountEvent implements DiscountEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if(order.getAllPrice() < 10000){
+        if(order.getAllPrice() < minPriceCondition){
             return false;
         }
 
@@ -34,6 +39,6 @@ public class WeekDiscountEvent implements DiscountEvent{
 
     @Override
     public String toString(){
-        return "평일 할인";
+        return eventName;
     }
 }

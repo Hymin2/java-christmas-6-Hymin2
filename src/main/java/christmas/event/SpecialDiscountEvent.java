@@ -5,10 +5,15 @@ import christmas.domain.Order;
 import christmas.util.DateCalculator;
 
 public class SpecialDiscountEvent implements DiscountEvent{
+    private final int minPriceCondition = 10000;
+    private final int baseDiscountPrice = 1000;
+
+    private final String eventName = "특별 할인";
+
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return -1000;
+            return -1 * baseDiscountPrice;
         }
 
         return 0;
@@ -16,7 +21,7 @@ public class SpecialDiscountEvent implements DiscountEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if(order.getAllPrice() < 10000){
+        if(order.getAllPrice() < minPriceCondition){
             return false;
         }
 
@@ -29,6 +34,6 @@ public class SpecialDiscountEvent implements DiscountEvent{
 
     @Override
     public String toString(){
-        return "특별 할인";
+        return eventName;
     }
 }

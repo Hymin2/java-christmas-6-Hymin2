@@ -16,6 +16,6 @@ public class DateCalculator {
             throw new IllegalArgumentException(ErrorMessage.LESS_MIN_ORDER_NUMBER_ERROR_MESSAGE.getMessage());
         }
 
-        return DayOfWeek.getNowDayOfWeek(firstDayOfWeek, 1, date);
+        return DayOfWeek.getNowDayOfWeek(firstDayOfWeek, EventConfig.DAY_RANGE_MIN_VALUE.getValue(), date);
     }
 }

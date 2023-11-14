@@ -3,11 +3,17 @@ package christmas.event;
 import christmas.domain.Order;
 
 public class ChristmasDayDiscountEvent implements DiscountEvent{
+    private final int minPriceCondition = 10000;
+    private final int baseDiscountPrice = 1000;
+    private final int extraDiscountPrice = 100;
+
+    private final String eventName = "크리스마스 디데이 할인";
+
 
     @Override
     public int getDiscountPrice(Order order) {
         if(isApply(order)){
-            return -(1000 + 100 * (order.getDate() - 1));
+            return -1 * (baseDiscountPrice + extraDiscountPrice * (order.getDate() - 1));
         }
 
         return 0;
@@ -15,7 +21,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
 
     @Override
     public boolean isApply(Order order) {
-        if (order.getAllPrice() < 10000){
+        if (order.getAllPrice() < minPriceCondition){
             return false;
         }
 
@@ -28,6 +34,6 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
 
     @Override
     public String toString(){
-        return "크리스마스 디데이 할인";
+        return eventName;
     }
 }
