@@ -14,28 +14,12 @@ public class OrderRepository {
         order.saveDate(date);
     }
 
+    public void saveBenefit(String eventName, int benefitPrice){
+        order.saveBenefit(eventName, benefitPrice);
+    }
+
     public Order getOrder(){
         return order;
-    }
-
-    public void addBenefitPrice(int benefitPrice){
-        order.addBenefitPrice(benefitPrice);
-    }
-
-    public void isAllDrink(){
-        order.isAllDrink();
-    }
-
-    public int getSumPrice(){
-        return order.getAllPrice();
-    }
-
-    public int getDessertCount(){
-        return order.getDessertCount();
-    }
-
-    public int getMainMenuCount(){
-        return order.getMainMenuCount();
     }
 
     public void clear(){
