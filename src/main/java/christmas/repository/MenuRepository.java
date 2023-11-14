@@ -1,6 +1,7 @@
 package christmas.repository;
 
 import christmas.domain.Menu;
+import christmas.error.ErrorMessage;
 import java.util.ArrayList;
 
 public class MenuRepository {
@@ -25,6 +26,10 @@ public class MenuRepository {
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_MENU_ORDER_ERROR_MESSAGE.getMessage());
+    }
+
+    public void clear(){
+        menu.clear();
     }
 }
