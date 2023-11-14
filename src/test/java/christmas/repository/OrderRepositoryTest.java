@@ -62,31 +62,7 @@ class OrderRepositoryTest {
         orderRepository.saveMenu(menu3, 2);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            orderRepository.isAllDrink();
+            orderRepository.getOrder().isAllDrink();
         });
-    }
-
-    @Test
-    @DisplayName("메뉴 금액 총합을 가져오기 테스트")
-    void getSumPriceTest(){
-        int sumPrice = orderRepository.getSumPrice();
-
-        assertEquals(106000, sumPrice);
-    }
-
-    @Test
-    @DisplayName("메인 메뉴 개수 가져오기 테스트")
-    void getMainMenuCountTest(){
-        int mainMenuCount = orderRepository.getMainMenuCount();
-
-        assertEquals(4, mainMenuCount);
-    }
-
-    @Test
-    @DisplayName("디저트 메뉴 개수 가져오기 테스트")
-    void getDessertMenuCountTest(){
-        int dessertMenuCount = orderRepository.getDessertCount();
-
-        assertEquals(2, dessertMenuCount);
     }
 }
