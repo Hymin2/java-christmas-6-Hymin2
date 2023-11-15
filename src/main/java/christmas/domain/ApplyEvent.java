@@ -37,4 +37,9 @@ public class ApplyEvent {
 
         return Collections.unmodifiableMap(allBenefits);
     }
+
+    public void clear(){
+        discountBenefits.clear();
+        giftBenefits.clear();
+    }
 }
