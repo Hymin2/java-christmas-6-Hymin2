@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Set;
 
 public class RestaurantEventService {
+    private final String menuSplitRegex = ",";
+    private final String menuNameAndNumberSplitRegex = "-";
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
     private final ApplyEventRepository applyEventRepository;
@@ -43,11 +45,11 @@ public class RestaurantEventService {
         orderRepository.saveDate(date);
     }
 
-    public void saveOrderMenu(String orderMenu){
-        String[] orderMenus = orderMenu.split(",");
+    public void saveOrderMenu(String inputOrderMenu){
+        String[] orderMenus = inputOrderMenu.split(menuSplitRegex);
 
-        for (String _orderMenu : orderMenus) {
-            String[] nameAndNumber = _orderMenu.split("-");
+        for (String orderMenu : orderMenus) {
+            String[] nameAndNumber = orderMenu.split(menuNameAndNumberSplitRegex);
 
             Menu menu = menuRepository.findMenuByName(nameAndNumber[0]);
             int menuNumber = Integer.parseInt(nameAndNumber[1]);
@@ -55,9 +57,6 @@ public class RestaurantEventService {
             orderRepository.saveMenu(menu, menuNumber);
         }
         orderRepository.getOrder().isAllDrink();
-
-        applyDiscountEvent();
-        applyGiftEvent();
     }
 
     public void applyDiscountEvent(){
