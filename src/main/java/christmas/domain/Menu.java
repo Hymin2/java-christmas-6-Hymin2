@@ -40,7 +40,7 @@ public class Menu {
 
         boolean equalName = this.name.equals(menu.name);
         boolean equalType = this.type.equals(menu.type);
-        boolean equalPrice = this.amount == menu.amount;
+        boolean equalPrice = this.amount.equals(menu.amount);
 
         return equalName && equalType && equalPrice;
     }
