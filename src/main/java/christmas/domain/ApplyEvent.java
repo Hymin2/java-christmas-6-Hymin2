@@ -3,6 +3,7 @@ package christmas.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ApplyEvent {
     private final Map<String, Integer> discountBenefits = new HashMap<>();
@@ -22,11 +23,15 @@ public class ApplyEvent {
                 .intValue();
     }
 
-    public int getAllBenefitAmount(){
+    public int getTotalBenefitAmount(){
         return discountBenefits.values()
                 .stream()
                 .reduce(0, (benefit1, benefit2) -> benefit1 + benefit2)
                 .intValue() + getDiscountAmount();
+    }
+
+    public Set<String> getGift(){
+        return giftBenefits.keySet();
     }
 
     public Map<String, Integer> getAllBenefits(){

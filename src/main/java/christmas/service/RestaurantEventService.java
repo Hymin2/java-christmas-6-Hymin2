@@ -136,7 +136,7 @@ public class RestaurantEventService {
     public int getAllBenefitAmount(){
         ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
-        return applyEvent.getAllBenefitAmount();
+        return applyEvent.getTotalBenefitAmount();
     }
 
     public int getExpectAmount() {
