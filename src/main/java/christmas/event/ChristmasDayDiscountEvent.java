@@ -6,6 +6,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
     private final int minPriceCondition = 10000;
     private final int baseDiscountPrice = 1000;
     private final int extraDiscountPrice = 100;
+    private final int eventLastDay = 25;
 
     private final String eventName = "크리스마스 디데이 할인";
 
@@ -25,7 +26,7 @@ public class ChristmasDayDiscountEvent implements DiscountEvent{
             return false;
         }
 
-        if(order.getDate() > 25){
+        if(order.getDate() > eventLastDay){
             return false;
         }
 
