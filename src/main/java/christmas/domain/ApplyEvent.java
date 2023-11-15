@@ -24,7 +24,7 @@ public class ApplyEvent {
     }
 
     public int getTotalBenefitAmount(){
-        return discountBenefits.values()
+        return giftBenefits.values()
                 .stream()
                 .reduce(0, (benefit1, benefit2) -> benefit1 + benefit2)
                 .intValue() + getDiscountAmount();
