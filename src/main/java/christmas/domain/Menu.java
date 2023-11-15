@@ -4,11 +4,11 @@ import christmas.config.MenuType;
 import java.util.Objects;
 
 public class Menu {
-    private String name;
-    private MenuType type;
-    private int amount;
+    private final String name;
+    private final MenuType type;
+    private final Integer amount;
 
-    public Menu(String name, MenuType type, int amount){
+    public Menu(String name, MenuType type, Integer amount){
         this.name = name;
         this.type = type;
         this.amount = amount;
@@ -18,8 +18,16 @@ public class Menu {
         return name.equals(this.name);
     }
 
-    public MenuType getType(){
-        return type;
+    public boolean isMain(){
+        return type.equals(MenuType.MAIN);
+    }
+
+    public boolean isDessert(){
+        return type.equals(MenuType.DESSERT);
+    }
+
+    public boolean isDrink(){
+        return type.equals(MenuType.DRINK);
     }
 
     public int getAmount(){
