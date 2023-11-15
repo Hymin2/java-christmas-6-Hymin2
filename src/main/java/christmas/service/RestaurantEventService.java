@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.config.MenuType;
+import christmas.domain.ApplyEvent;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.dto.OrderBenefitDto;
@@ -14,17 +15,22 @@ import christmas.event.GiftEvent;
 import christmas.event.SpecialDiscountEvent;
 import christmas.event.WeekDiscountEvent;
 import christmas.event.WeekendDiscountEvent;
+import christmas.repository.ApplyEventRepository;
 import christmas.repository.MenuRepository;
 import christmas.repository.OrderRepository;
 import java.util.List;
+import java.util.Set;
 
 public class RestaurantEventService {
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
+    private final ApplyEventRepository applyEventRepository;
 
-    public RestaurantEventService(MenuRepository menuRepository, OrderRepository orderRepository) {
+    public RestaurantEventService(MenuRepository menuRepository, OrderRepository orderRepository,
+                                  ApplyEventRepository applyEventRepository) {
         this.menuRepository = menuRepository;
         this.orderRepository = orderRepository;
+        this.applyEventRepository = applyEventRepository;
 
         this.initMenu();
     }
@@ -63,9 +69,9 @@ public class RestaurantEventService {
 
         Order order = orderRepository.getOrder();
 
-        for(DiscountEvent discountEvent : discountEvents){
-            if (discountEvent.isApply(order)){
-                orderRepository.saveBenefit(discountEvent.toString(), discountEvent.getDiscountAmount(order));
+        for(DiscountEvent discountEvent: discountEvents){
+            if(discountEvent.isApply(order)){
+                applyEventRepository.saveDiscountBenefit(discountEvent.toString(), discountEvent.getDiscountAmount(order));
             }
         }
     }
@@ -75,61 +81,44 @@ public class RestaurantEventService {
 
         Order order = orderRepository.getOrder();
 
-        if (giftEvent.isApply(order)){
-            orderRepository.saveBenefit(giftEvent.toString(), giftEvent.getGiftAmount(order));
+        if(giftEvent.isApply(order)){
+            applyEventRepository.saveGiftBenefit(giftEvent.toString(), getAllBenefitAmount());
         }
     }
 
     public int getDiscountAmount(){
-        List<DiscountEvent> discountEvents = List.of(
-                new ChristmasDayDiscountEvent(),
-                new WeekDiscountEvent(),
-                new WeekendDiscountEvent(),
-                new SpecialDiscountEvent());
+        ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
-        Order order = orderRepository.getOrder();
-
-        int totalDiscountAmount = 0;
-
-        for(DiscountEvent discountEvent : discountEvents){
-            if (discountEvent.isApply(order)){
-                totalDiscountAmount += discountEvent.getDiscountAmount(order);
-            }
-        }
-
-        return totalDiscountAmount;
+        return applyEvent.getDiscountAmount();
     }
 
-    public String getGift(){
-        GiftEvent giftEvent = new ChampagneGiftEvent();
+    public Set<String> getGift(){
+        ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
-        Order order = orderRepository.getOrder();
-
-        if (giftEvent.isApply(order)){
-            return giftEvent.getGift(order);
-        }
-
-        return "없음";
+        return applyEvent.getGift();
     }
 
     public String getBadge(){
         BadgeEvent badgeEvent = new ChristmasBadgeEvent();
+        ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
-        Order order = orderRepository.getOrder();
-
-        if (badgeEvent.isApply(order)){
-            return badgeEvent.getBadge(order);
+        if(badgeEvent.isApply(applyEvent)){
+            return badgeEvent.getBadge(applyEvent);
         }
 
         return "없음";
     }
 
     public OrderMenuDto getMenu(){
-        return new OrderMenuDto(orderRepository.getOrder().getMenu());
+        Order order = orderRepository.getOrder();
+
+        return new OrderMenuDto(order.getMenu());
     }
 
     public OrderBenefitDto getBenefits(){
-        return new OrderBenefitDto(orderRepository.getOrder().getBenefits());
+        ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
+
+        return new OrderBenefitDto(applyEvent.getAllBenefits());
     }
 
     public int getDate(){
@@ -144,10 +133,10 @@ public class RestaurantEventService {
         return order.getAllAmount();
     }
 
-    public int getBenefitAmount(){
-        Order order = orderRepository.getOrder();
+    public int getAllBenefitAmount(){
+        ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
-        return order.getBenefitAmount();
+        return applyEvent.getAllBenefitAmount();
     }
 
     public int getExpectAmount() {
