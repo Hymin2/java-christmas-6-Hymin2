@@ -6,6 +6,7 @@ import christmas.dto.OrderBenefitDto;
 import christmas.dto.OrderMenuDto;
 import java.text.DecimalFormat;
 import java.util.Map;
+import java.util.Set;
 
 public class OutputView {
     public void printEventMessage(int date){
@@ -22,10 +23,19 @@ public class OutputView {
         }
     }
 
-    public void printGiftMenu(String gift){
+    public void printGiftMenu(Set<String> gifts){
         System.out.println();
         System.out.println("<증정 메뉴>");
-        System.out.println(gift);
+
+        if(isNotExistGift(gifts)){
+            System.out.println("없음");
+
+            return;
+        }
+
+        for(String gift : gifts){
+            System.out.println(gift);
+        }
     }
 
     public void printTotalAmount(int totalAmount){
@@ -69,8 +79,12 @@ public class OutputView {
         System.out.println(badge);
     }
 
+    private boolean isNotExistGift(Set<String> gifts){
+        return gifts.isEmpty();
+    }
+
     private boolean isNotExistBenefit(Map<String, Integer> benefits){
-        return benefits.keySet().isEmpty();
+        return benefits.isEmpty();
     }
 
     private String toWon(int price){

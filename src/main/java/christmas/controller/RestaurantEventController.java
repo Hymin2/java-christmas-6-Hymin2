@@ -60,7 +60,7 @@ public class RestaurantEventController {
 
         outputView.printGiftMenu(restaurantEventService.getGift());
         outputView.printBenefit(restaurantEventService.getBenefits());
-        outputView.printTotalBenefit(restaurantEventService.getBenefitAmount());
+        outputView.printTotalBenefit(restaurantEventService.getAllBenefitAmount());
 
         outputView.printExpectAmount(restaurantEventService.getExpectAmount());
 
