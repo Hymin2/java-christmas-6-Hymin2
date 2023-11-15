@@ -10,7 +10,6 @@ public class Order {
     private Integer date;
     private final Map<Menu, Integer> menu = new HashMap<>();
 
-
     public void saveMenu(Menu menu, Integer menuNumber){
         validate(menuNumber);
         validate(menu);
