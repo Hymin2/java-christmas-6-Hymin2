@@ -1,17 +1,15 @@
 package christmas.domain;
 
 import christmas.config.EventConfig;
-import christmas.config.MenuType;
 import christmas.error.ErrorMessage;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Order {
     private Integer date;
-    private Map<String, Integer> benefits = new HashMap<>();
-    private Map<Menu, Integer> menu = new HashMap<>();
+    private final Map<Menu, Integer> menu = new HashMap<>();
+
 
     public void saveMenu(Menu menu, Integer menuNumber){
         validate(menuNumber);
@@ -24,17 +22,13 @@ public class Order {
         this.date = date;
     }
 
-    public void saveBenefit(String eventName, int benefitAmount){
-        this.benefits.put(eventName, benefitAmount);
-    }
-
     public void isAllDrink(){
-        Set<MenuType> typeSet = menu.keySet()
+        int drinkCount = (int) menu.keySet()
                 .stream()
-                .map(Menu::getType)
-                .collect(Collectors.toSet());
+                .filter(Menu::isDrink)
+                .count();
 
-        if(typeSet.contains(MenuType.DRINK) && typeSet.size() == 1){
+        if(drinkCount == menu.size()){
             throw new IllegalArgumentException(ErrorMessage.ORDER_MENU_IS_ONLY_DRINK_ERROR_MESSAGE.getMessage());
         }
     }
@@ -53,7 +47,7 @@ public class Order {
         int sum = 0;
 
         for(Menu m : menu.keySet()){
-            if(m.getType().equals(MenuType.DESSERT)) {
+            if(m.isDessert()) {
                 sum += menu.get(m);
             }
         }
@@ -65,7 +59,7 @@ public class Order {
         int sum = 0;
 
         for(Menu m : menu.keySet()){
-            if(m.getType().equals(MenuType.MAIN)) {
+            if(m.isMain()) {
                 sum += menu.get(m);
             }
         }
@@ -73,22 +67,12 @@ public class Order {
         return sum;
     }
 
-    public Integer getDate(){
+    public int getDate(){
         return date;
     }
 
-    public Map<String, Integer> getBenefits(){
-        return benefits;
-    }
-
     public Map<Menu, Integer> getMenu() {
-        return menu;
-    }
-
-    public Integer getBenefitAmount(){
-        return benefits.values()
-                .stream()
-                .reduce(0, (a, b) -> a + b);
+        return Collections.unmodifiableMap(menu);
     }
 
     public void clear(){
