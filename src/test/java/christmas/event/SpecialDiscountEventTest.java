@@ -73,6 +73,6 @@ class SpecialDiscountEventTest {
 
         int discount = SpecialDiscountEvent.getDiscountAmount(order);
 
-        assertEquals(1000, discount);
+        assertEquals(-1000, discount);
     }
 }

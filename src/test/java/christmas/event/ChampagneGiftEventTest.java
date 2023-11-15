@@ -47,6 +47,6 @@ class ChampagneGiftEventTest {
 
         int discount = champagneGiftEvent.getGiftAmount(order);
 
-        assertEquals(25000, discount);
+        assertEquals(-25000, discount);
     }
 }

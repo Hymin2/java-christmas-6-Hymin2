@@ -36,6 +36,7 @@ class OrderRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             orderRepository.saveMenu(menu, 2);
+            assertEquals(null, orderRepository.getOrder().getMenu());
         });
     }
 
@@ -46,6 +47,7 @@ class OrderRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             orderRepository.saveMenu(menu, 19);
+            assertEquals(null, orderRepository.getOrder().getMenu());
         });
     }
 

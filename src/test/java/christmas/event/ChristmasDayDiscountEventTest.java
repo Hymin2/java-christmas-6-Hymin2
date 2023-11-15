@@ -61,6 +61,6 @@ class ChristmasDayDiscountEventTest {
 
         int discount = christmasDayDiscountEvent.getDiscountAmount(order);
 
-        assertEquals(3100, discount);
+        assertEquals(-3100, discount);
     }
 }

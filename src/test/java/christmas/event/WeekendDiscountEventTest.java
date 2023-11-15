@@ -61,6 +61,6 @@ class WeekendDiscountEventTest {
 
         int discount = weekendDiscountEvent.getDiscountAmount(order);
 
-        assertEquals(4046, discount);
+        assertEquals(-4046, discount);
     }
 }
