@@ -1,7 +1,9 @@
 package christmas.event;
 
-import christmas.domain.Order;
+import christmas.domain.ApplyEvent;
 
-public interface BadgeEvent extends Event {
-    String getBadge(Order order);
+public interface BadgeEvent {
+    boolean isApply(ApplyEvent applyEvent);
+    String getBadge(ApplyEvent applyEvent);
+
 }

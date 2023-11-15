@@ -1,6 +1,6 @@
 package christmas.event;
 
-import christmas.domain.Order;
+import christmas.domain.ApplyEvent;
 
 public class ChristmasBadgeEvent implements BadgeEvent{
     private final int minPriceCondition = 5000;
@@ -13,9 +13,9 @@ public class ChristmasBadgeEvent implements BadgeEvent{
     private final String starBadge = "별";
 
     @Override
-    public String getBadge(Order order) {
-        if(isApply(order)){
-            int benefitPrice = Math.abs(order.getBenefitAmount());
+    public String getBadge(ApplyEvent applyEvent) {
+        if(isApply(applyEvent)){
+            int benefitPrice = Math.abs(applyEvent.getAllBenefitAmount());
 
             if(benefitPrice >= santaPriceCondition){
                 return santaBadge;
@@ -30,11 +30,12 @@ public class ChristmasBadgeEvent implements BadgeEvent{
     }
 
     @Override
-    public boolean isApply(Order order) {
-        if(Math.abs(order.getBenefitAmount()) >= minPriceCondition){
+    public boolean isApply(ApplyEvent applyEvent) {
+        if(Math.abs(applyEvent.getAllBenefitAmount()) >= minPriceCondition){
             return true;
         }
 
         return false;
     }
+
 }
