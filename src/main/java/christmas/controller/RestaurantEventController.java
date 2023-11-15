@@ -24,6 +24,7 @@ public class RestaurantEventController {
 
         restaurantEventService.clearMenu();
         restaurantEventService.clearOrder();
+        restaurantEventService.clearApplyEvent();
     }
 
     public void saveVisitDate(){

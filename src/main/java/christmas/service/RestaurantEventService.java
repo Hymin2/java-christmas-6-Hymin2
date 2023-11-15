@@ -152,6 +152,10 @@ public class RestaurantEventService {
         orderRepository.clear();
     }
 
+    public void clearApplyEvent(){
+        applyEventRepository.clear();
+    }
+
     private void initMenu(){
         this.saveMenu(new Menu("양송이수프", MenuType.APPETIZER, 6000));
         this.saveMenu(new Menu("타파스", MenuType.APPETIZER, 5500));

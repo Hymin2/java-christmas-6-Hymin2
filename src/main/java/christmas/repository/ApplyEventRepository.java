@@ -20,4 +20,8 @@ public class ApplyEventRepository {
     public void saveGift(String gift){
         applyEvent.saveGift(gift);
     }
+
+    public void clear() {
+        applyEvent.clear();
+    }
 }
