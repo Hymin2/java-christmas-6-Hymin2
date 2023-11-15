@@ -20,6 +20,7 @@ public class RestaurantEventController {
     public void run(){
         saveVisitDate();
         saveOrderMenu();
+        applyEvent();
         printOrderDetails();
 
         restaurantEventService.clearMenu();
@@ -27,7 +28,7 @@ public class RestaurantEventController {
         restaurantEventService.clearApplyEvent();
     }
 
-    public void saveVisitDate(){
+    private void saveVisitDate(){
         while(true) {
             try {
                 int date = inputView.readDate();
@@ -40,7 +41,7 @@ public class RestaurantEventController {
         }
     }
 
-    public void saveOrderMenu(){
+    private void saveOrderMenu(){
         while(true) {
             try {
                 String orderMenu = inputView.readOrderMenu();
@@ -53,7 +54,12 @@ public class RestaurantEventController {
         }
     }
 
-    public void printOrderDetails(){
+    private void applyEvent(){
+        restaurantEventService.applyDiscountEvent();
+        restaurantEventService.applyGiftEvent();
+    }
+
+    private void printOrderDetails(){
         outputView.printEventMessage(restaurantEventService.getDate());
 
         outputView.printOrderMenu(restaurantEventService.getMenu());
