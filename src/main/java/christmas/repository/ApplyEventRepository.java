@@ -16,4 +16,8 @@ public class ApplyEventRepository {
     public void saveGiftBenefit(String eventName, int benefitAmount){
         applyEvent.saveGiftBenefit(eventName, benefitAmount);
     }
+
+    public void saveGift(String gift){
+        applyEvent.saveGift(gift);
+    }
 }

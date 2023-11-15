@@ -1,19 +1,25 @@
 package christmas.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ApplyEvent {
     private final Map<String, Integer> discountBenefits = new HashMap<>();
     private final Map<String, Integer> giftBenefits = new HashMap<>();
+    private final List<String> gifts = new ArrayList<>();
 
     public void saveDiscountBenefit(String eventName, int benefitAmount){
         discountBenefits.put(eventName, benefitAmount);
     }
     public void saveGiftBenefit(String eventName, int benefitAmount){
         giftBenefits.put(eventName, benefitAmount);
+    }
+
+    public void saveGift(String gift){
+        gifts.add(gift);
     }
 
     public int getDiscountAmount(){
@@ -30,8 +36,8 @@ public class ApplyEvent {
                 .intValue() + getDiscountAmount();
     }
 
-    public Set<String> getGift(){
-        return giftBenefits.keySet();
+    public List<String> getGift(){
+        return Collections.unmodifiableList(gifts);
     }
 
     public Map<String, Integer> getAllBenefits(){

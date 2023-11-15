@@ -5,8 +5,8 @@ import christmas.domain.Menu;
 import christmas.dto.OrderBenefitDto;
 import christmas.dto.OrderMenuDto;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class OutputView {
     public void printEventMessage(int date){
@@ -23,7 +23,7 @@ public class OutputView {
         }
     }
 
-    public void printGiftMenu(Set<String> gifts){
+    public void printGiftMenu(List<String> gifts){
         System.out.println();
         System.out.println("<증정 메뉴>");
 
@@ -79,7 +79,7 @@ public class OutputView {
         System.out.println(badge);
     }
 
-    private boolean isNotExistGift(Set<String> gifts){
+    private boolean isNotExistGift(List<String> gifts){
         return gifts.isEmpty();
     }
 

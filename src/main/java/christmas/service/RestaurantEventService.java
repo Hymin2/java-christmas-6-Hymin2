@@ -82,7 +82,8 @@ public class RestaurantEventService {
         Order order = orderRepository.getOrder();
 
         if(giftEvent.isApply(order)){
-            applyEventRepository.saveGiftBenefit(giftEvent.toString(), getAllBenefitAmount());
+            applyEventRepository.saveGiftBenefit(giftEvent.toString(), giftEvent.getGiftAmount(order));
+            applyEventRepository.saveGift(giftEvent.getGift(order));
         }
     }
 
@@ -92,7 +93,7 @@ public class RestaurantEventService {
         return applyEvent.getDiscountAmount();
     }
 
-    public Set<String> getGift(){
+    public List<String> getGift(){
         ApplyEvent applyEvent = applyEventRepository.getApplyEvent();
 
         return applyEvent.getGift();
