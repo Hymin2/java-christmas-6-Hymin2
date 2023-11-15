@@ -5,7 +5,7 @@ import christmas.error.ErrorMessage;
 import java.util.ArrayList;
 
 public class MenuRepository {
-    private static ArrayList<Menu> menu = new ArrayList<>();
+    private static final ArrayList<Menu> menu = new ArrayList<>();
 
     public void save(Menu _menu){
         menu.add(_menu);
