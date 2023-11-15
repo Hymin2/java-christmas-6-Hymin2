@@ -24,6 +24,7 @@ import java.util.Set;
 public class RestaurantEventService {
     private final String menuSplitRegex = ",";
     private final String menuNameAndNumberSplitRegex = "-";
+
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
     private final ApplyEventRepository applyEventRepository;
